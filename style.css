@@ -1,33 +1,30 @@
-/* Variables de color para mantener consistencia */
 :root {
-    --bg-color: #0f172a;
-    --text-color: #f8fafc;
-    --primary-color: #38bdf8;
-    --card-bg: #1e293b;
-    --nav-bg: rgba(15, 23, 42, 0.85);
+    --bg: #0a0a0a;
+    --fg: #ededed;
+    --gray: #888888;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', system-ui, sans-serif;
+    /* Forzamos la tipografía estilo código */
+    font-family: 'Courier New', Courier, monospace;
 }
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    background-color: var(--bg);
+    color: var(--fg);
     line-height: 1.6;
 }
 
-/* Navegación Fija y con efecto cristal */
 header {
     position: fixed;
     top: 0;
     width: 100%;
-    background: var(--nav-bg);
-    backdrop-filter: blur(8px);
-    padding: 1rem 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--gray);
+    padding: 1.5rem 0;
     z-index: 1000;
 }
 
@@ -35,40 +32,36 @@ nav ul {
     display: flex;
     justify-content: center;
     list-style: none;
-    gap: 2rem;
+    gap: 3rem;
 }
 
 nav a {
-    color: var(--text-color);
+    color: var(--gray);
     text-decoration: none;
-    font-weight: 600;
     font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: color 0.3s ease;
+    transition: color 0.2s ease;
 }
 
 nav a:hover {
-    color: var(--primary-color);
+    color: var(--fg);
 }
 
-/* Layout General de Secciones */
 section {
-    padding: 6rem 2rem 4rem;
-    max-width: 900px;
+    padding: 8rem 2rem 4rem;
+    max-width: 800px;
     margin: 0 auto;
 }
 
 h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-bottom: 2rem;
-    color: var(--primary-color);
-    border-bottom: 2px solid var(--primary-color);
+    color: var(--fg);
+    border-bottom: 1px dashed var(--gray);
     display: inline-block;
     padding-bottom: 0.5rem;
+    font-weight: normal;
 }
 
-/* Sección Hero (Inicio) */
 .hero {
     height: 100vh;
     display: flex;
@@ -77,34 +70,50 @@ h2 {
     align-items: flex-start;
 }
 
-.hero h1 {
-    font-size: 3.5rem;
-    line-height: 1.1;
+.comment {
+    color: var(--gray);
     margin-bottom: 1rem;
 }
 
-.hero .subtitle {
-    font-size: 1.25rem;
-    color: #94a3b8;
-    margin-bottom: 2.5rem;
+.hero h1 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--gray);
+    margin-bottom: 3rem;
+}
+
+/* Animación para el guion bajo al final del subtítulo */
+.cursor {
+    display: inline-block;
+    width: 10px;
+    background-color: var(--fg);
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
 }
 
 .btn {
-    padding: 0.8rem 1.8rem;
-    background-color: var(--primary-color);
-    color: var(--bg-color);
+    padding: 0.8rem 1.5rem;
+    background-color: transparent;
+    color: var(--fg);
     text-decoration: none;
-    font-weight: bold;
-    border-radius: 6px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid var(--fg);
+    transition: all 0.3s ease;
 }
 
 .btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
+    background-color: var(--fg);
+    color: var(--bg);
 }
 
-/* Grid de Proyectos */
 .grid-proyectos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -112,28 +121,26 @@ h2 {
 }
 
 .tarjeta-proyecto {
-    background: var(--card-bg);
     padding: 1.5rem;
-    border-radius: 8px;
-    border: 1px solid #334155;
-    transition: transform 0.3s ease;
+    border: 1px solid var(--gray);
+    transition: border-color 0.3s;
 }
 
 .tarjeta-proyecto:hover {
-    transform: translateY(-5px);
-    border-color: var(--primary-color);
+    border-color: var(--fg);
 }
 
 .tarjeta-proyecto h3 {
     margin-bottom: 1rem;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    font-weight: normal;
 }
 
 .tarjeta-proyecto p {
-    color: #cbd5e1;
+    color: var(--gray);
+    font-size: 0.95rem;
 }
 
-/* Habilidades (Tags) */
 .tags-habilidades {
     display: flex;
     flex-wrap: wrap;
@@ -141,27 +148,21 @@ h2 {
 }
 
 .tags-habilidades span {
-    background: var(--card-bg);
-    color: var(--primary-color);
-    padding: 0.5rem 1.2rem;
-    border-radius: 20px;
-    font-weight: 600;
+    color: var(--fg);
+    padding: 0.4rem 0.8rem;
+    border: 1px dashed var(--gray);
     font-size: 0.9rem;
-    border: 1px solid #334155;
 }
 
-/* Footer */
 footer {
     text-align: center;
     padding: 2rem;
     margin-top: 4rem;
-    border-top: 1px solid #334155;
-    color: #64748b;
+    color: var(--gray);
+    border-top: 1px solid var(--gray);
 }
 
-/* Media Query para móviles */
 @media (max-width: 600px) {
-    .hero h1 { font-size: 2.5rem; }
-    nav ul { gap: 1rem; }
-    nav a { font-size: 0.8rem; }
+    .hero h1 { font-size: 2rem; }
+    nav ul { gap: 1rem; flex-wrap: wrap; }
 }
