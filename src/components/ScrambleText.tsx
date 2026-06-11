@@ -4,11 +4,12 @@ import { useState, useEffect } from "react";
 interface ScrambleTextProps {
   text: string;
   className?: string;
+  style?: React.CSSProperties;
 }
 
 const CHARS = "!<>-_\\\\/[]{}—=+*^?#________";
 
-export default function ScrambleText({ text, className = "" }: ScrambleTextProps) {
+export default function ScrambleText({ text, className = "", style }: ScrambleTextProps) {
   const [displayText, setDisplayText] = useState(text);
 
   useEffect(() => {
@@ -40,5 +41,5 @@ export default function ScrambleText({ text, className = "" }: ScrambleTextProps
     return () => cancelAnimationFrame(animationFrameId);
   }, [text]);
 
-  return <span className={className}>{displayText}</span>;
+  return <span className={className} style={style}>{displayText}</span>;
 }
