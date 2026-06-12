@@ -36,10 +36,45 @@ export default function TerminalWindow({ title, children, id, className = "" }: 
     setIsMinimized(!isMinimized);
   };
 
-  const handleResetPosition = (e: React.MouseEvent) => {
+  const handleDockClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    // Vuelve la ventana a su offset (0,0) arrastrado
+    
+    // Si la ventana estaba arrastrada, la regresamos a su origen suavemente
     animationControls.start({ x: 0, y: 0, transition: { type: "spring", stiffness: 300, damping: 30 } });
+
+    // Encontrar la ventana actual en el DOM
+    const currentWindow = (e.currentTarget as HTMLElement).closest('.window-frame');
+    if (!currentWindow) return;
+
+    const currentRect = currentWindow.getBoundingClientRect();
+    const allWindows = Array.from(document.querySelectorAll('.window-frame'));
+    
+    let nextWindow: Element | null = null;
+    let minDiff = Infinity;
+
+    // Buscar la ventana que esté físicamente más cerca hacia abajo
+    allWindows.forEach(win => {
+      if (win === currentWindow) return;
+      const rect = win.getBoundingClientRect();
+      const diff = rect.top - currentRect.top;
+      
+      // Tolerancia de 10px para evitar ventanas en la misma fila en modo grid
+      if (diff > 10 && diff < minDiff) { 
+        minDiff = diff;
+        nextWindow = win;
+      }
+    });
+
+    // Hacer scroll suave hacia la siguiente ventana
+    if (nextWindow) {
+      const elementPosition = nextWindow.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - 100; // Offset para que no quede pegada al tope
+  
+      window.scrollTo({
+           top: offsetPosition,
+           behavior: "smooth"
+      });
+    }
   };
 
   return (
@@ -85,8 +120,8 @@ export default function TerminalWindow({ title, children, id, className = "" }: 
               <Minus size={14} />
             </button>
             <button 
-              onClick={handleResetPosition} 
-              title="Acoplar"
+              onClick={handleDockClick} 
+              title="Ir a la siguiente sección"
             >
               <Square size={12} />
             </button>

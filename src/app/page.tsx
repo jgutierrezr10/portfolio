@@ -10,6 +10,13 @@ export default function Home() {
   const [lines, setLines] = useState<number[]>([]);
   const [isLightMode, setIsLightMode] = useState(false);
   const [isStacked, setIsStacked] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText("jgutierrezreyes2003@gmail.com");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   useEffect(() => {
     // Generate line numbers based on approximate scroll height
@@ -71,6 +78,9 @@ export default function Home() {
       </div>
 
       <header>
+        <div className="logo-pixel">
+          <a href="#inicio">&gt;JGR_</a>
+        </div>
         <nav>
           <ul>
             <li><a href="#inicio">~/inicio</a></li>
@@ -78,7 +88,6 @@ export default function Home() {
             <li><a href="#proyectos">~/proyectos</a></li>
             <li><a href="#stack">~/stack</a></li>
             <li><a href="#certificaciones">~/certificados</a></li>
-            <li><a href="#contacto">~/contacto</a></li>
             <li style={{ marginLeft: "1.5rem" }}>
               <button 
                 onClick={toggleLayout} 
@@ -114,7 +123,23 @@ export default function Home() {
                   <span className="font-elegant">Estudiante de Ing. Civil en Informática</span>
                   <span className="cursor">_</span>
                 </p>
-                <a href="#proyectos" className="btn">ejecutar ./ver_proyectos.sh</a>
+                <div className="social-links-container">
+                  <button onClick={handleCopyEmail} className="social-link">
+                    <Mail size={16} color="#ea4335" /> <span>{copied ? "copiado!" : "jgutierrezreyes2003@gmail.com"}</span>
+                  </button>
+                  <a href="https://github.com/jgutierrezr10" target="_blank" rel="noopener noreferrer" className="social-link">
+                    <Code size={16} color={isLightMode ? "#24292e" : "#fafbfc"} /> <span>github</span>
+                  </a>
+                  <a href="https://linkedin.com/in/jgutierrezr10" target="_blank" rel="noopener noreferrer" className="social-link">
+                    <Briefcase size={16} color="#0a66c2" /> <span>linkedin</span>
+                  </a>
+                  <a href="/tu_cv.pdf" target="_blank" rel="noopener noreferrer" className="social-link">
+                    <FileText size={16} color="#10b981" /> <span>cv</span>
+                  </a>
+                </div>
+                <div style={{ marginTop: "2.5rem" }}>
+                  <a href="#proyectos" className="btn" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>./ver_proyectos.sh</a>
+                </div>
             </section>
         </TerminalWindow>
 
@@ -143,20 +168,6 @@ export default function Home() {
               </section>
           </TerminalWindow>
 
-          <TerminalWindow id="win-contacto" title="contactar.sh">
-              <section id="contacto" style={{ padding: "1rem 0" }}>
-                <h2><span className="font-elegant">05.</span> &gt; <ScrambleText text="./contactar.sh" /></h2>
-                <p className="font-elegant" style={{ fontSize: "1.1rem", lineHeight: "1.8", color: "var(--fg)", marginBottom: "2rem" }}>
-                  ¿Tienes algún proyecto en mente, buscas colaboración o simplemente quieres charlar sobre código? Siéntete libre de contactarme.
-                </p>
-                <div style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap" }}>
-                  <a href="mailto:jgutierrezreyes2003@gmail.com" className="btn" style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}><Mail size={16} /> enviar_email</a>
-                  <a href="https://github.com/jgutierrezr10" target="_blank" rel="noopener noreferrer" className="btn" style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}><Code size={16} /> ver_github</a>
-                  <a href="https://linkedin.com/in/jgutierrezr10" target="_blank" rel="noopener noreferrer" className="btn" style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}><Briefcase size={16} /> linkedin</a>
-                  <a href="/tu_cv.pdf" target="_blank" rel="noopener noreferrer" className="btn" style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}><FileText size={16} /> descargar_cv</a>
-                </div>
-              </section>
-          </TerminalWindow>
         </div>
 
         <div className="col-right">

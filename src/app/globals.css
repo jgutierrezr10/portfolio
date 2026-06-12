@@ -71,16 +71,46 @@ header {
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border-bottom: 1px double var(--gray);
-    padding: 1.2rem 0;
+    padding: 1.2rem 3rem;
     z-index: 1000;
     box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 nav ul {
     display: flex;
     justify-content: center;
     list-style: none;
-    gap: 4rem;
+    gap: 2rem;
+    align-items: center;
+}
+
+.logo-pixel {
+    position: absolute;
+    left: 3rem;
+    font-family: var(--font-pixel), monospace;
+    font-size: 1.3rem;
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+}
+
+.light-mode .logo-pixel {
+    color: var(--fg);
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.15);
+}
+
+.logo-pixel a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s;
+}
+
+.logo-pixel a:hover {
+    color: var(--fg);
+    text-shadow: 0 0 10px var(--accent);
 }
 
 nav a {
@@ -227,7 +257,6 @@ nav a:hover {
     .layout-stacked #win-proyectos { order: 3; }
     .layout-stacked #win-stack { order: 4; }
     .layout-stacked #win-certificaciones { order: 5; }
-    .layout-stacked #win-contacto { order: 6; }
 }
 
 .layout-list {
@@ -248,10 +277,37 @@ nav a:hover {
 .layout-list #win-proyectos { order: 3; }
 .layout-list #win-stack { order: 4; }
 .layout-list #win-certificaciones { order: 5; }
-.layout-list #win-contacto { order: 6; }
 
 .window-content {
     padding: 3rem;
+}
+
+.social-links-container {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    font-family: var(--font-mono);
+    color: var(--gray);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.social-link:hover {
+    color: var(--fg);
+    transform: translateY(-2px);
 }
 
 section {
