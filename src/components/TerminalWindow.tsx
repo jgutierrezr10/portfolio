@@ -53,8 +53,8 @@ export default function TerminalWindow({ title, children, id, className = "" }: 
     let minDiff = Infinity;
 
     // Buscar la ventana que esté físicamente más cerca hacia abajo
-    allWindows.forEach(win => {
-      if (win === currentWindow) return;
+    for (const win of allWindows) {
+      if (win === currentWindow) continue;
       const rect = win.getBoundingClientRect();
       const diff = rect.top - currentRect.top;
       
@@ -63,7 +63,7 @@ export default function TerminalWindow({ title, children, id, className = "" }: 
         minDiff = diff;
         nextWindow = win;
       }
-    });
+    }
 
     // Hacer scroll suave hacia la siguiente ventana
     if (nextWindow) {
