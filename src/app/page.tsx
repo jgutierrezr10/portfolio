@@ -198,9 +198,7 @@ export default function Home() {
                                 <a href="https://aulaproject.vercel.app/login" target="_blank" rel="noopener noreferrer" className="demo-link" style={{ display: "flex", alignItems: "center", gap: "0.3rem" }}><Globe size={14} /> demo</a>
                             </div>
                         </div>
-                        <div className="iframe-container">
-                            <iframe src="https://aulaproject.vercel.app/login" title="Preview Aula Demo" className="proyecto-preview-iframe" scrolling="no"></iframe>
-                        </div>
+                        <img src="/aula-preview.png" alt="Preview Plataforma Aula" style={{ width: "100%", height: "auto", borderRadius: "4px", border: "1px solid var(--card-border)", margin: "1.5rem 0" }} />
                         <p>Plataforma web educativa e interactiva para la gestión académica y aprendizaje online fluido.</p>
                     </div>
                     
