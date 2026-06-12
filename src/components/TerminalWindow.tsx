@@ -47,9 +47,9 @@ export default function TerminalWindow({ title, children, id, className = "" }: 
     if (!currentWindow) return;
 
     const currentRect = currentWindow.getBoundingClientRect();
-    const allWindows = Array.from(document.querySelectorAll('.window-frame'));
+    const allWindows = Array.from(document.querySelectorAll('.window-frame')) as HTMLElement[];
     
-    let nextWindow: Element | null = null;
+    let nextWindow: HTMLElement | null = null;
     let minDiff = Infinity;
 
     // Buscar la ventana que esté físicamente más cerca hacia abajo
